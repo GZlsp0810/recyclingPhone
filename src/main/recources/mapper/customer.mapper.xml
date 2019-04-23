@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.mybatis.example.BlogMapper">
+    <resultMap id="baseResult" type="com.qianfeng.login.po.Customer">
+        <id property="custId" column="cust_id" javaType="java.lang.Long"/>
+        <result property="cust_name" column="custName" javaType="java.lang.String"/>
+        <result property="custPwd" column="cust_pwd"/>
+    </resultMap>
+    <select id="queryBycustName" resultMap="baseResult">
+       select cust_name,cust_pwd from customer where cust_name=#{custName}
+    </select>
+</mapper>
