@@ -3,6 +3,7 @@ package com.qianfeng.list.controller;
 import com.qianfeng.list.po.Phone;
 import com.qianfeng.list.service.IphonelistService;
 import com.qianfeng.list.service.impl.PhoneListServiceimpl;
+import com.qianfeng.list.vo.PhonemsgVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,5 +27,17 @@ public class PhoneController {
     public List<Phone> queryBytypeId(Integer typeId){
         List<Phone> phones = serviceimpl.queryBytypeId(typeId);
         return phones;
+    }
+    @ResponseBody
+    @RequestMapping("phoneId")
+    public Phone queryByphoneId(Integer phoneId){
+        Phone phone = serviceimpl.queryByphoneId(phoneId);
+        return phone;
+    }
+    @ResponseBody
+    @RequestMapping("msg")
+    public List<PhonemsgVo> querymsgById(Integer phoneId){
+        List<PhonemsgVo> phonemsgVoList = serviceimpl.queryphonevoById(phoneId);
+        return phonemsgVoList;
     }
 }

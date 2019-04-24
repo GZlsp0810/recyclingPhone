@@ -13,10 +13,12 @@
         <!--</collection>-->
     </resultMap>
     <select id="findallphone" resultMap="baseResulet">
-        select img,mobile_name from phone;
+        select * from phone;
     </select>
     <select id="queryBytypeId" resultMap="baseResulet">
-        select img,mobile_name from phone where type_id=#{typeId}
+        select * from phone where type_id=#{typeId}
     </select>
-
+    <select id="queryByphoneId" resultMap="baseResulet">
+        select * from phone where phone_id=#{phoneId}
+    </select>
 </mapper>
