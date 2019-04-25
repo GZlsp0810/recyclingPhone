@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qianfeng.function.mapper.PhonefunMapper">
+    <resultMap id="baseResult" type="com.qianfeng.function.vo.PhonebasVo">
+        <id property="basId" column="bas_id" javaType="java.lang.Integer"/>
+        <result property="attribute" column="attribute" javaType="java.lang.String"/>
+        <collection property="phonebasinfoVoList"  ofType="com.qianfeng.function.vo.PhonebasinfoVo">
+            <id property="basinfoId" column="basinfo_id" javaType="java.lang.Integer"/>
+            <result property="describes" column="describes" javaType="java.lang.String"/>
+            <result property="detailed" column="detailed" javaType="java.lang.String"/>
+        </collection>
+    </resultMap>
+    <select id="queryPhonefuncList" resultMap="baseResult">
+                select a.attribute,a.bas_id,b.basinfo_id,b.detailed,b.describes,f.weight,f.phone_id FROM
+                bas a join basinfo b on b.bas_id = a.bas_id join fucphone f on b.basinfo_id  = f.fp_id
+                where phone_id=#{phoneId} and big_id=111;
+    </select>
+    <select id="queryPhonefuncLists" resultMap="baseResult">
+        select a.attribute,a.bas_id,b.basinfo_id,b.detailed,b.describes,f.weight,f.phone_id FROM
+                bas a join basinfo b on b.bas_id = a.bas_id join fucphone f on b.basinfo_id  = f.fp_id
+                where phone_id=#{phoneId} and big_id=222;
+    </select>
+    <select id="queryPhonefuncListst" resultMap="baseResult">
+         select a.attribute,a.bas_id,b.basinfo_id,b.detailed,b.describes,f.weight,f.phone_id FROM
+                bas a join basinfo b on b.bas_id = a.bas_id join fucphone f on b.basinfo_id  = f.fp_id
+                where phone_id=#{phoneId} and big_id=333;
+    </select>
+    <select id="queryPhonefuncListfuor" resultMap="baseResult">
+        select a.attribute,a.bas_id,b.basinfo_id,b.detailed,b.describes,f.weight,f.phone_id FROM
+                bas a join basinfo b on b.bas_id = a.bas_id join fucphone f on b.basinfo_id  = f.fp_id
+                where phone_id=#{phoneId} and big_id=444;
+    </select>
+</mapper>
