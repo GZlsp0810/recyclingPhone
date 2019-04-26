@@ -11,7 +11,7 @@ public class Phone {
   private String modifier;
   private java.sql.Timestamp startTime;
   private long typeId;
-  private double price;
+  private int price;
 
 
   public long getPhoneId() {
@@ -86,12 +86,11 @@ public class Phone {
   }
 
 
-  public double getPrice() {
+  public int getPrice() {
     return price;
   }
 
-  public void setPrice(double price) {
+  public void setPrice(int price) {
     this.price = price;
   }
-
 }
