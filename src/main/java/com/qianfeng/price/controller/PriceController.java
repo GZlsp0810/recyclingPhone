@@ -2,8 +2,10 @@ package com.qianfeng.price.controller;
 
 import com.qianfeng.list.po.Phone;
 import com.qianfeng.list.service.impl.PhoneListServiceimpl;
+import com.qianfeng.price.po.Basinfo;
 import com.qianfeng.price.po.Fucphone;
 import com.qianfeng.price.service.impl.Pricezhekouimpl;
+import com.qianfeng.price.vo.BasinfoVo;
 import com.qianfeng.price.vo.JsonResultVo;
 import com.qianfeng.price.vo.PriceList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,7 @@ import java.util.List;
 @RestController
 public class PriceController {
     @Autowired
-    private PhoneListServiceimpl listServiceimpl;
+    private PhoneListServiceimpl serviceimpl;
     @Autowired
  private Pricezhekouimpl pricezhekouimpl;
     JsonResultVo resultVo = new JsonResultVo();
@@ -41,4 +43,27 @@ public class PriceController {
      public JsonResultVo getprice(){
         return resultVo;
      }
+
+    @ResponseBody
+      @RequestMapping("jt")
+     public BasinfoVo getbasinfo(String sub){
+         String subt=resultVo.getSub();
+         BasinfoVo basinfoVo = new BasinfoVo();
+         basinfoVo.setSub(subt);
+         basinfoVo.setImg(resultVo.getImg());
+         basinfoVo.setNewPrice(resultVo.getNewPrice());
+          return   basinfoVo;
+     }
+     @ResponseBody()
+      @RequestMapping("jz")
+     public List<Basinfo> savabasinfo(String sub){
+         List<Basinfo> basinfos = pricezhekouimpl.querybasinfo(resultVo.getSub());
+         return basinfos;
+     }
+    @ResponseBody()
+    @RequestMapping("jj")
+     public Phone query(){
+        Phone phone = serviceimpl.queryByphoneId(resultVo.getPhoneId());
+        return phone;
+    }
 }

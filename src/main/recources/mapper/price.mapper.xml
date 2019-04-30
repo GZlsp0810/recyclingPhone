@@ -8,11 +8,20 @@
         <result property="basinfoId" column="basinfo_id" javaType="java.lang.Long"/>
         <result property="weight" column="weight" javaType="java.lang.Integer"/>
     </resultMap>
-
+      <resultMap id="basinfo" type="com.qianfeng.price.po.Basinfo">
+          <id property="basinfoId" column="basinfo_id" javaType="java.lang.Long"/>
+          <result property="describes" column="describes" javaType="java.lang.String"/>
+      </resultMap>
     <select id="querybyidprice" resultMap="baseResultMap">
         select  weight  from fucphone  where basinfo_id  in
         <foreach collection="array" open="(" close=")" separator=" , " item="value">
            #{value}
+        </foreach>
+    </select>
+    <select id="querbasinfo" resultMap="basinfo">
+        select  describes  from basinfo  where basinfo_id  in
+        <foreach collection="array" open="(" close=")" separator=" , " item="value">
+            #{value}
         </foreach>
     </select>
 </mapper>

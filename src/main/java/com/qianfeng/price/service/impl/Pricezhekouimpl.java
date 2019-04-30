@@ -3,6 +3,7 @@ package com.qianfeng.price.service.impl;
 import com.qianfeng.list.mapper.PhoneMapper;
 import com.qianfeng.list.po.Phone;
 import com.qianfeng.price.mapper.PriceMapper;
+import com.qianfeng.price.po.Basinfo;
 import com.qianfeng.price.po.Fucphone;
 import com.qianfeng.price.service.Ipricezhekou;
 import com.qianfeng.price.vo.PriceList;
@@ -17,6 +18,7 @@ public class Pricezhekouimpl implements Ipricezhekou {
     private PriceMapper priceMapper;
     @Autowired
     private PhoneMapper phoneMapper;
+
     @Override
     public PriceList queryprice(String sub, Integer phoneId) {
         Phone phone = phoneMapper.queryByphoneId(phoneId);
@@ -35,6 +37,13 @@ public class Pricezhekouimpl implements Ipricezhekou {
         priceList.setImg(phone.getImg());
 
         return priceList;
+    }
+
+    @Override
+    public  List<Basinfo> querybasinfo(String sub) {
+        String [] prices=sub.split("-");
+        List<Basinfo> basinfos = priceMapper.querbasinfo(prices);
+        return basinfos ;
     }
 
 }
